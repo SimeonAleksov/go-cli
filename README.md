@@ -13,6 +13,11 @@ $ make
 $ ./bin/go-cli
 ```
 
+However for that you'll need to adjust the .env with the correct host names, we can also run docker:
+```shell
+$ docker compose up
+```
+
 ### Testing
 
 ``make test``
