@@ -13,7 +13,7 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "Connect and consume kafka topics",
 	Short: "",
-  Long: "",
+	Long:  "",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

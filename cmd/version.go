@@ -6,11 +6,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// versionCmd represents the version command
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Print the version number of generated code example",
-	Long:  `All software has versions. This is generated code example`,
+	Short: "Current version of CLI app for tracking",
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Build Date:", version.BuildDate)
 		fmt.Println("Git Commit:", version.GitCommit)

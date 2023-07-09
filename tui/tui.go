@@ -1,6 +1,7 @@
 package tui
 
 import (
+	"github.com/SimeonAleksov/go-cli/domain/tracking"
 	"os"
 	"os/signal"
 	"sync"
@@ -11,7 +12,7 @@ import (
 )
 
 type TUI struct {
-	messages  chan string
+	messages  chan tracking.Account
 	messagesM sync.Mutex
 	consumer  *consumer.KafkaConsumer
 }
@@ -25,11 +26,11 @@ func NewTUI(kafkaConsumer *consumer.KafkaConsumer) *TUI {
 }
 
 func (t *TUI) Start() {
-  messages := make(chan string, 100)
+	messages := make(chan tracking.Account, 100)
 	go t.consumer.Start(messages)
 
 	t.messages = messages
-  go t.logKafkaMessages()
+	go t.logKafkaMessages()
 	go t.listenForTermination()
 }
 
@@ -47,7 +48,6 @@ func (t *TUI) listenForTermination() {
 
 func (t *TUI) logKafkaMessages() {
 	for msg := range t.messages {
-		log.Infoln("Received Kafka message:", msg)
+		log.Infof("%+v\n", msg)
 	}
 }
-
